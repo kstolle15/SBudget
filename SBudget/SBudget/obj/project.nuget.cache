@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DeofG+Jg8OIYhXTBgCi3/QS0ffuAIwzSJGmEy+M4xNKyrSW7pQLGrje+2aNW98GeM1KfREYGyGqihV+fcjoPWg==",
+  "dgSpecHash": "IndcS29Yqnld/NXwiSV0j+hdzKGAuXw2+NNlVuKO5VIItfeMT/INcjk8A/U+a5NcN1DfL7Rv/PyERHEEN5Fp6A==",
   "success": true,
   "projectFilePath": "/Users/kyle/SBudget/SBudget/SBudget/SBudget/SBudget.csproj",
   "expectedPackageFiles": [
@@ -38,7 +38,10 @@
     "/Users/kyle/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.5/microsoft.extensions.logging.abstractions.3.1.5.nupkg.sha512",
     "/Users/kyle/.nuget/packages/microsoft.extensions.options/3.1.5/microsoft.extensions.options.3.1.5.nupkg.sha512",
     "/Users/kyle/.nuget/packages/microsoft.extensions.primitives/3.1.5/microsoft.extensions.primitives.3.1.5.nupkg.sha512",
+    "/Users/kyle/.nuget/packages/mysqlconnector/0.61.0/mysqlconnector.0.61.0.nupkg.sha512",
     "/Users/kyle/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/kyle/.nuget/packages/pomelo.entityframeworkcore.mysql/3.1.1/pomelo.entityframeworkcore.mysql.3.1.1.nupkg.sha512",
+    "/Users/kyle/.nuget/packages/pomelo.jsonobject/2.2.1/pomelo.jsonobject.2.2.1.nupkg.sha512",
     "/Users/kyle/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.2/sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "/Users/kyle/.nuget/packages/sqlitepclraw.core/2.0.2/sqlitepclraw.core.2.0.2.nupkg.sha512",
     "/Users/kyle/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.2/sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",
