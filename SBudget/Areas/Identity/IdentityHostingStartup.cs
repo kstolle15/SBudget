@@ -17,7 +17,7 @@ namespace SBudget.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<SBudgetContext>(options =>
-                    options.UseSqlServer(
+                    options.UseMySql(
                         context.Configuration.GetConnectionString("SBudgetContextConnection")));
 
                 services.AddDefaultIdentity<SBudgetUser>(options => options.SignIn.RequireConfirmedAccount = true)

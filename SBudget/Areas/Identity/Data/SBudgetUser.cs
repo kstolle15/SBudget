@@ -9,5 +9,11 @@ namespace SBudget.Areas.Identity.Data
     // Add profile data for application users by adding properties to the SBudgetUser class
     public class SBudgetUser : IdentityUser
     {
+        [PersonalData]
+        public string FirstName { get; set; }
+
+        [PersonalData]
+
+        public string LastName { get; set; }
     }
 }
