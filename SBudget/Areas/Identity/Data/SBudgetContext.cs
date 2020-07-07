@@ -23,9 +23,10 @@ namespace SBudget.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<Account>().ToTable("Accounts");
-            builder.Entity<Income>().ToTable("Income");
+            builder.Entity<Income>().ToTable("Incomes");
             builder.Entity<Expense>().ToTable("Expenses");
             builder.Entity<Transfer>().ToTable("Transfers");
+            builder.Entity<Budget>().ToTable("Budgets");
         }
     }
 }

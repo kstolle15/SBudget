@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200707225058_AddExpenseModel.cs" />
     <Compile Remove="Migrations\20200707225058_AddExpenseModel.Designer.cs" />
+    <Compile Remove="Migrations\20200707231303_AddBudgetModel.cs" />
+    <Compile Remove="Migrations\20200707231303_AddBudgetModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

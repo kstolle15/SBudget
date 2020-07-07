@@ -171,6 +171,25 @@ namespace SBudget.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("SBudget.Areas.Identity.Data.Budget", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Budgets");
+                });
+
             modelBuilder.Entity("SBudget.Areas.Identity.Data.Expense", b =>
                 {
                     b.Property<int>("ID")
@@ -183,6 +202,9 @@ namespace SBudget.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
+                    b.Property<int?>("BudgetID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
@@ -192,6 +214,8 @@ namespace SBudget.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("AccountID");
+
+                    b.HasIndex("BudgetID");
 
                     b.ToTable("Expenses");
                 });
@@ -208,6 +232,9 @@ namespace SBudget.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
+                    b.Property<int?>("BudgetID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
@@ -221,7 +248,9 @@ namespace SBudget.Migrations
 
                     b.HasIndex("AccountID");
 
-                    b.ToTable("Income");
+                    b.HasIndex("BudgetID");
+
+                    b.ToTable("Incomes");
                 });
 
             modelBuilder.Entity("SBudget.Areas.Identity.Data.SBudgetUser", b =>
@@ -303,6 +332,9 @@ namespace SBudget.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
+                    b.Property<int?>("BudgetID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
@@ -313,6 +345,8 @@ namespace SBudget.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BudgetID");
 
                     b.HasIndex("NewAccountID");
 
@@ -379,11 +413,22 @@ namespace SBudget.Migrations
                         .HasForeignKey("userId");
                 });
 
+            modelBuilder.Entity("SBudget.Areas.Identity.Data.Budget", b =>
+                {
+                    b.HasOne("SBudget.Areas.Identity.Data.SBudgetUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("SBudget.Areas.Identity.Data.Expense", b =>
                 {
                     b.HasOne("SBudget.Areas.Identity.Data.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountID");
+
+                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
+                        .WithMany("Expenses")
+                        .HasForeignKey("BudgetID");
                 });
 
             modelBuilder.Entity("SBudget.Areas.Identity.Data.Income", b =>
@@ -391,10 +436,18 @@ namespace SBudget.Migrations
                     b.HasOne("SBudget.Areas.Identity.Data.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountID");
+
+                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
+                        .WithMany("Incomes")
+                        .HasForeignKey("BudgetID");
                 });
 
             modelBuilder.Entity("SBudget.Areas.Identity.Data.Transfer", b =>
                 {
+                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
+                        .WithMany("Transfers")
+                        .HasForeignKey("BudgetID");
+
                     b.HasOne("SBudget.Areas.Identity.Data.Account", "NewAccount")
                         .WithMany()
                         .HasForeignKey("NewAccountID");
