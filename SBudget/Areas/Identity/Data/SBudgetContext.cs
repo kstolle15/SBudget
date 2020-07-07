@@ -24,6 +24,8 @@ namespace SBudget.Data
             // Add your customizations after calling base.OnModelCreating(builder);
             builder.Entity<Account>().ToTable("Accounts");
             builder.Entity<Income>().ToTable("Income");
+            builder.Entity<Expense>().ToTable("Expenses");
+            builder.Entity<Transfer>().ToTable("Transfers");
         }
     }
 }

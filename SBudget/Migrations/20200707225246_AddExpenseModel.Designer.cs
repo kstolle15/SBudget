@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBudget.Data;
 
 namespace SBudget.Migrations
 {
     [DbContext(typeof(SBudgetContext))]
-    partial class SBudgetContextModelSnapshot : ModelSnapshot
+    [Migration("20200707225246_AddExpenseModel")]
+    partial class AddExpenseModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,33 +296,6 @@ namespace SBudget.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Transfer", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("NewAccountID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OldAccountID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("NewAccountID");
-
-                    b.HasIndex("OldAccountID");
-
-                    b.ToTable("Transfers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -391,17 +366,6 @@ namespace SBudget.Migrations
                     b.HasOne("SBudget.Areas.Identity.Data.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountID");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Transfer", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "NewAccount")
-                        .WithMany()
-                        .HasForeignKey("NewAccountID");
-
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "OldAccount")
-                        .WithMany()
-                        .HasForeignKey("OldAccountID");
                 });
 #pragma warning restore 612, 618
         }
