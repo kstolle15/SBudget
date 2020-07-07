@@ -149,110 +149,6 @@ namespace SBudget.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Account", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<double>("balance")
-                        .HasColumnType("double");
-
-                    b.Property<int>("type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("userId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Budget", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Budgets");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Expense", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AccountID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
-
-                    b.Property<int?>("BudgetID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AccountID");
-
-                    b.HasIndex("BudgetID");
-
-                    b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Income", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AccountID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
-
-                    b.Property<int?>("BudgetID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AccountID");
-
-                    b.HasIndex("BudgetID");
-
-                    b.ToTable("Incomes");
-                });
-
             modelBuilder.Entity("SBudget.Areas.Identity.Data.SBudgetUser", b =>
                 {
                     b.Property<string>("Id")
@@ -323,38 +219,6 @@ namespace SBudget.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Transfer", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<double>("Amount")
-                        .HasColumnType("double");
-
-                    b.Property<int?>("BudgetID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("NewAccountID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OldAccountID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BudgetID");
-
-                    b.HasIndex("NewAccountID");
-
-                    b.HasIndex("OldAccountID");
-
-                    b.ToTable("Transfers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -404,57 +268,6 @@ namespace SBudget.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Account", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.SBudgetUser", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Budget", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.SBudgetUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Expense", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountID");
-
-                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
-                        .WithMany("Expenses")
-                        .HasForeignKey("BudgetID");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Income", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountID");
-
-                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
-                        .WithMany("Incomes")
-                        .HasForeignKey("BudgetID");
-                });
-
-            modelBuilder.Entity("SBudget.Areas.Identity.Data.Transfer", b =>
-                {
-                    b.HasOne("SBudget.Areas.Identity.Data.Budget", null)
-                        .WithMany("Transfers")
-                        .HasForeignKey("BudgetID");
-
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "NewAccount")
-                        .WithMany()
-                        .HasForeignKey("NewAccountID");
-
-                    b.HasOne("SBudget.Areas.Identity.Data.Account", "OldAccount")
-                        .WithMany()
-                        .HasForeignKey("OldAccountID");
                 });
 #pragma warning restore 612, 618
         }
